@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- tab name -->
+        <title id='Tab'> Dean Cochran's Technical Documentation Page</title>
+        <!-- style imports -->
+        <link rel="stylesheet" media="screen and (min-width: 600px)" href='./documentation.css'>
+        <link rel="stylesheet" media="screen and (max-width: 900px)" href='./documentation2.css'>
+    </head>
+    <main>
+        <header id="intro">
+            <!-- Large centered div with sub header-->
+            <div id="title">
+                <h1>How to build an application in Django with React</h1>
+                <div id="subtitle"> 
+                    <h3>
+                        Resource found at <a href="https://medium.com/swlh/full-stack-with-django-and-react-django-4dcd87d57356">
+                            Berat Asici - Copyright 2021</a>  Redesigned by: Dean Cochran
+                    </h3> 
+                </div>
+            </div>
+        </header>
+        <hr>
+
+        <span id="menu-btn" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+        <nav id="navbar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <header>
+                <h1>Technical Documentation Page Shortcuts</h1>
+            </header>
+            <body>
+                <ul>
+                    <li><a class="nav-link" href="#Abstract">Abstract</a></li>
+                    <li><a class="nav-link" href="#Django">Django</a></li>
+                    <li><a class="nav-link" href="#Getting_Started">Getting Started</a></li>
+                    <li><a class="nav-link" href="#Models">Models</a></li>
+                    <li><a class="nav-link" href="#Migrate">Migrate</a></li>
+                    <li><a class="nav-link" href="#Views">Views</a></li>
+                    <li><a class="nav-link" href="#Dynamic_URLs">Dynamic URLs</a></li>
+                    <li><a class="nav-link" href="#Templates">Templates,</a></li>
+                    <li><a class="nav-link" href="#REST_API">REST API</a></li>
+                    <li><a class="nav-link" href="#Serializer">Serializer</a></li>
+                    <li><a class="nav-link" href="#Testing">Testing</a></li>
+                    
+                </ul>
+            </body>
+            <footer>
+                <h4>Settings and Extras</h4>
+            </footer>
+        </nav>
+
+        <body>
+            <main id="main-doc">
+                <section class="main-section">
+                    <header id="Abstract">
+                        <h1>Abstract</h1>
+                    </header>
+                    <body>
+                        <p>Welcome to the page!</p>
+                        <p>
+                            This is a Technical Documentation Page deesigned for academic purposes, under no circumstances do I claim the rights to the information provided here below. 
+                            This contnent discusses how to build hybrid applications with React and Django as well as exploring the common issues that come up and how to solve them.
+                        </p>
+                        <p>
+                            This guide is primarily aimed at developers with some Django familiarity who are looking to learn more about JavaScript and React. It assumes working knowledge of fundamental Django concepts like models, views and URLs.
+                            This project was built with the purpose to learn how to buuild a techincal documentation page for freeCodeCamp! 
+                        </p>
+                    </body>
+                </section>
+                <hr>
+                <section class="main-section">
+                    <header id="Django">
+                        <h1>Django</h1>
+                    </header>
+                    <body>
+                        <p>
+                            Django is a Python-based free and open-source web library based on the model-template-view architecture,  and
+                            React is a JavaScript library that allows you to create user interfaces for your web projects on a component basis.
+                        </p>
+                    </body>
+                </section>
+                <hr>
+                <section class="main-section">
+                    <header id="Getting_Started">
+                        <h1>Getting Started</h1>
+                    </header>
+                    <body>
+                        <p>Here is what you need to have installed on your computer before keeping to read the article:</p>
+                        <ul>
+                            <li>Python3</li>
+                            <li>Pip</li>
+                            <li>NodeJS</li>
+                        </ul>
+                        <p>Let is start by setting up a working environment. I created a folder named as DjangoReact. First step is installing pipenv. 
+                            It automatically creates and manages a virtualenv for your projects, as well as adds/removes packages from your Pipfile as you install/uninstall packages.
+                        </p>
+                        <p>Paste the below code to the command line after going into the workspace:</p>
+                        <code class="code"> python3.6 -m pip install pipenv --upgrade </code>
+                        <p>Afterward, via the below code we will install django (latest version) to our virtualenv via the below code:</p>
+                        <code class="code"> pipenv install --python 3.6 django==3.0.8 </code>
+                        <p>After installation is done, our folder tree must be as follows:</p>
+                        <div> 
+                            <img
+                                alt="intsallation img #1"
+                                scr=""
+                            >
+                        </div>
+                        <p>To be activated virtualenv run <code class="code">pipenv shell</code> code on the command line.</p>
+                        <p> Now, we can start to create our first Django project. 
+                            You may see the parameters you could use by typing <code class="code">django-admin </code>on the command line. 
+                            For now, we just interested in a parameter called <code class="code">startproject </code> . 
+                            Since we want to install to the folder we are in (we have already created a folder at the beginning of the article), 
+                            we are creating a project called DjangoReact to the folder we are in.
+                        </p>
+                        <code class="code">django-admin startproject DjangoReact</code>
+                        <p>Here is the final folder tree:</p>
+                        <div class="img-div"> 
+                            <img
+                                alt="final intsall img #2"
+                                scr=""
+                            >
+                        </div>
+                        <p>
+                            I want to take a note here that projects and applications are completely different kinds of things. 
+                            The application is a web application that serves a specific purpose — blog, todolist, database records, etc. 
+                            while the project is a collection of applications and configurations within a website. 
+                            The project can contain more than one application.
+                        </p>
+                        <p> To check, we run our server and check that it is working properly. 
+                            When we run <code class="code">manage.py runserver </code>, the output in the terminal should be as follows.
+                        </p>
+                        <div class="img-div"> 
+                            <img
+                                alt="manage.py runserver img"
+                                scr=""
+                            >
+                        </div>
+                        <p>When we enter our localhost, the screen below appears.</p>
+                        <div class="img-div"> 
+                            <img
+                                alt="django default page img"
+                                scr=""
+                            >
+                        </div>
+                    </body>
+                        <p>Now, it is time to create our first application. </p>
+                        <p>
+                            We come into DjangoReact folder and create an application with the
+                            <code class="code"> ./manage.py startapp books </code> command. 
+                            After running the command, it will create a folder named ‘books’ inside our folder and install it. 
+                            The final version of our folder is as follows:
+                        </p>
+                        <div class="img-div"> 
+                            <img
+                                alt="books app folder img"
+                                scr=""
+                            >
+                        </div>
+                </section>
+                <hr>
+                <section class="main-section">
+                    <header id="Models">
+                        <h1>Models</h1>
+                    </header>
+                    <body>
+                        <p>We should configure our model.py file in books application as follows.</p>
+                        <code class="code">
+                            <pre>
+from django.db import models <br>
+    class Books(models.Model):<br>
+    name = models.TextField(blank=False, null=False)<br>
+    author = models.TextField(blank=False, null=False)<br>
+    description = models.TextField(blank=True, null=True) <br>
+    image = models.FileField(upload_to='images/', blank=True, null=True)<br>                                
+                            </pre>
+                        </code>
+                        <p>With <code>models.TextField()</code>, we define the name, author and description fields. 
+                            <code class="code">blank = False </code> and <code class="code">null = False </code> fields need to be filled, even if others are empty. 
+                            Since the id field will increase automatically and will be used as a selector, we have defined it as AutoField and primary key. 
+                            In order to get our cover images, we determined the file path using FileField and said that this field can be left blank.
+                        </p>
+                    </body>
+                </section>
+                <hr>
+                <section class="main-section">
+                    <header id="Migrate">
+                        <h1>Migrate</h1>
+                    </header>
+                    <body>
+                        <p>In order to recognize our application when the project is running, 
+                            we need to find the <code class="code">INSTALLED_APPS</code> in the <code class="code">settings.py</code> file under our project folder, 
+                            add and save our model name 'books' . After doing this, we run the <code class="code">python manage.py makemigrations</code>  
+                            command to write the changes we made in our model to the database scheme. 
+                            After completion, we apply the changes we made with <code class="code"> python manage.py migrate </code> command.
+                        </p>
+                        <div class="img-div"> 
+                            <img
+                                alt="make migrations img"
+                                scr=""
+                            >
+                        </div>
+                        <p>
+                            Let us now test our model on the terminal and see how it works. Run the shell writing 
+                            <code class="code"> ./manage.py shell </code> and apply the codes below.
+                        </p>
+                        <div class="img-div"> 
+                            <img
+                                alt="make migrations img2"
+                                scr=""
+                            >
+                        </div>
+                        <p>If you don’t get any error messages re-enter the shell and run the below codes to see either your records have been saved or not.</p>
+                        <div class="img-div"> 
+                            <img
+                                alt="make migrations img3"
+                                scr=""
+                            >
+                        </div>
+                    </body>
+                </section>
+                <hr>
+                <section class="main-section">
+                    <header id="Views">
+                        <h1>Views</h1>
+                    </header>
+                    <body>
+                        <p>
+                            Let’s mess with the view side a bit. Open <code class="code"> views.py</code> file under our ‘books’ folder and print “Hello World” message to perform a ritual.
+                        </p>
+                        <code class="code">
+                            <pre>
+from django.http import HttpResponse
+from django.shortcuts import render
+def home_view(request, *args, **kwargs):
+    return HttpResponse("< h1>Hello World!< /h1>")                                              
+                            </pre>
+                        </code>
+                        <p> And we define the paths to the urls.py file as following:</p>
+                        <code class="code">
+                            <pre>
+from django.contrib import admin
+from django.urls import path
+from books.views import home_view
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', home_view),
+]                                            
+                            </pre>
+                        </code>
+                        <p>Now we see “Hello world!” message on our screen when we visit our home page.</p>
+                    </body>
+                </section>
+                <hr>
+                <section class="main-section">
+                    <header id="Dynamic_URLs">
+                        <h1>Dynamic URLs</h1>
+                    </header>
+                    <body>
+                        <p>
+                            Let us create one more function to the view file and print parameters coming with URL.
+                        </p>
+                        <code class="code">
+                            <pre>
+def book_detail_view(request, book_id, *args, **kwargs):
+    return HttpResponse(f"< h1>Hey {book_id} < /h1>")             
+                            </pre>
+                        </code>
+                        <p>Of course, there is no router to run this code. So, add path('books/< int:book_id>', book_detail_view) into urlpatterns. And do not forget to importbook_detail_view from book.view</p>
+                        <p>
+                            Now, we can see Hey 1 message when we enter http://127.0.0.1:8000/books/1 address.
+                             We used url parameter as a string now. Let us now try to use it to bring book information from our database.
+                            </p>
+                        <code class="code">
+                            <pre>
+
+                            
+def book_detail_view(request, book_id, *args, **kwargs):
+    obj = Books.objects.get(id=book_id)
+    return HttpResponse(f"Kitap Adı: {obj.name} Yazarı: {obj.author}")
+                            </pre>
+                        </code>
+                        <p> Now, when we visit http://127.0.0.1:8000/books/1 address on browser, we’ll see the name and author of a book which its id is 1 in database.</p>
+                        <p>
+                            If we enter an id that doesn’t exist in our database, it will show up an error that there’s no data matched with that id. 
+                            Let’s catch that error up and return a 404 page.
+                        </p>
+                        <code>
+                            <pre>
+# import HttpResponse and Http404 from django.http
+from django.http import HttpResponse, Http404
+
+# in book_detail_view function 
+try:
+   obj = Books.objects.get(id=book_id)
+except:
+   raise Http404
+                            </pre>
+                        </code>
+                        <div class="img-div"> 
+                            <img
+                                alt="default 404 img"
+                                scr=""
+                            >
+                        </div>
+                        <p>
+                            As I said before, it should be a CRUD application so let’s create a form for the book creation part. 
+                            Create a file named /templates/components/form.htmland create one more file named form.py under our application folder.
+                        </p>
+                        <code>
+                            <pre>
+from django import forms
+from .models import Books
+class BooksForm(forms.modelForm):
+   class Meta:
+      model = Books
+      field = ['name', 'author', 'description', 'image']
+   def clean_description(self):
+      description = self.cleaned_data.get('description')
+      if len(description) > 300:
+         raise forms.ValidationError('This is too long')
+      return description
+                            </pre>
+                        </code>
+                        <p>
+                            We wrote the above code into theform.py file. When we started to our project and created a model, we defined name, author, and description fields as TextField. 
+                            In the model we created by calling Django’s ‘forms’ class, we want it to create a form based on the data we want. 
+                            I wanted to give an example of how we can control the data by limiting the book description. 
+                            I just wanted to take advantage of Django’s benefits.
+                        </p>
+                        <p>
+                            Now, we can use our form in views. 
+                            Create a function named book_create_view , add it onto urls.py in order to run it when create-book action comes.
+
+                        </p>
+                        <code class="code">
+                            <pre>
+
+from .form import BooksForm
+def book_create_view(request, *args, **kwargs):
+   form = BooksForm(request.POST or None)
+   if form.is_valid():
+      obj = form.save(commit=False)
+      obj.save()
+      form = BooksForm()
+   return render(request, 'components/form.html', 
+   context={'form':form})
+                            </pre>
+                        </code>
+                        <p>
+                            On the code above, we imported BooksForm from form.py file. 
+                            While creating a model, we determined which fields should be filled or not. 
+                            Accordingly, we obtain control from the form class of Django, if there is no data entry other than the expected data, we save the incoming form.
+                        </p>
+                        <p>
+                            Let’s see our form template on the interface. form.html file as follows:
+                        </p>
+                        <code class="code">
+                            <pre>
+< form method="POST"> {% csrf_token %}
+    {{ form.as_p }}
+< button type="submit">Save< /button>
+< /form>
+                            </pre>
+                        </code>
+                        <p>
+                            form.as_p means, wrap all elements between < p> tags. 
+                                Cross-site request forgery (CSRF) is a web security vulnerability that allows an attacker to induce users to perform actions that they do not intend to perform. 
+                                To block these kind of attacks, it creates a token and checks it on back-end. This is an digressive of our subject but useful information.
+                        </p>
+                        <p>I did not want to make an explanation for the deletion and updating process, in order to avoid the word crowd. 
+                            To delete a data, you can use <code class="code">Books.objects.filter(id=book_id).delete()</code> and here is the update method:
+                        </p>
+                        <code class="code">
+                            <pre>
+book = Books.objects.get(id=1)
+book.name = "Yeni isim"
+book.save()
+                            </pre>
+                        </code>
+                        <p>Now, we will send the data we have in an HTML Template file and print it on the screen more regularly.</p>
+                    </body>
+                </section>
+                <hr>
+                <section class="main-section">
+                    <header id="Templates">
+                        <h1>Templates</h1>
+                    </header>
+                    <body>
+                        <p>
+                            First of all, we prepare the template folder. 
+                            We create a folder named templates in the main directory. 
+                            In order to determine the template path, we find the TEMPLATES array in our settings.py file and edit the ‘DIRS’ into [<code class="code">os.path.join(BASE_DIR, "templates")</code>]
+                            Now we have specified our template path. We create an HTML file named /pages/home.html in our templates folder and you can write anything indicating that file is there. 
+                            I wrote “Hello World from home.html file”. 
+                            Next, we configure the home_view function in the views section, which we define on the home page, not directly to the screen, but to call our HTML file.
+                        </p>
+                        <code class="code">
+                            <pre>
+def home_view(request, *args, **kwargs): 
+   return render(request, 'pages/home.html', context={} status=200)
+                            </pre>
+                        </code>
+                        <p>
+                            To run away from repeated-code let’s create a file named base.html and fill it with the codes we’ll use in all pages such as meta tags, titles, etc.
+                        </p>
+                        <code class="code"> 
+                            <pre>
+                            
+< !DOCTYPE html>
+< html lang="en">
+  < head>
+    < meta charset="UTF-8">
+      < meta name="viewport" content="width=device-width, initial-scale=1.0">
+    < title>DjangoReact< /title>
+   < /head>
+   < body>
+      {% block content %}
+      {% endblock content %}
+   < /body>
+< /html>
+                            </pre>    
+                        </code>
+                        <p>
+                            If you have ever used a template engine such as twig and blade, this idea won’t sound strange to you. 
+                            If you have never used it, you may take a look at the documentation pages and see the basic usage and come back. 
+                            Basically, the template engines allow us to compile data that comes from the backend in dynamic pages, 
+                            which we break into pieces — menu, header, meta tags, sidebar, etc. — allows us to run our files according to our needs. 
+                            I continue without distracting the subject.
+                        </p>
+                        <p>
+                            Let’s use our base.html file into home.html as follows:
+                        </p>
+                        <code class="code"> 
+                            <pre>
+{% extends 'base.html' %}
+{% block content %}
+   DjangoReact
+   <!--- Buraya yazdıklarımız base.html sayfası çağrılarak block content kısmına yerleştirilecek -->
+{% endblock content %}
+                            </pre>
+                        </code>
+                        <div class="img-div"> 
+                            <img
+                                alt="template default img"
+                                scr=""
+                            >
+                        </div>
+                        <p>
+                            As you can see above, when we enter the main page, it now calls our home.html page. 
+                            When the page is compiled, as I mentioned above, we integrate it into base.html and get an output like this.
+                        </p>
+                    </body>
+                </section>
+                <hr>
+                <section class="main-section">
+                    <header id="REST_API">
+                        <h1>REST API</h1>
+                    </header>
+                    <body>
+                        <p>
+                            We ran our template and dug a bit. 
+                            Now it’s better to return our data as json since we use it on front-end.
+                            We made our return value as HttpResponse in book_detail_view and home_view. 
+                            In home_view, we rendered our page over HTML, and in the book_detail_view section, we directly printed it on the screen. 
+                            We call the JsonResponse class from django.http. 
+                            We will print our data in a slightly more useful way, rather than directly.
+                        </p>
+                        <code class="code">
+                            <pre>
+def book_detail_view(request, book_id, *args, **kwargs):
+    data = {
+        "id" : book_id
+    }
+    status = 200
+    try:
+        obj = Books.objects.get(id=book_id)
+        data['name'] = obj.name
+        data['author'] = obj.author
+        data['description'] = obj.description
+    except:
+        data['message'] = "Not Found"
+        status = 404
+    return JsonResponse(data,status=status)
+                            </pre>
+                        </code>
+                        <p>
+                            In the code above, if searched data exist it returns data object filled with our results. if it’s not it returns an error message. 
+                            Instead of returning the Http404 when it was not found, we printed an error code and a message on the screen, because we now provide API.
+                        </p>
+                        <p>Let’s write our code that lists all the books.</p>
+                        <code class="code">
+                            <pre>
+def books_list(request, *args, **kwargs):
+    blist = Books.object.all()
+    books = [{"id":x.id, "name":x.name, "author":x.author, "description":x.description} for x in blist]
+    data = {
+        "response" : books
+    }
+   return JsonResponse(data)
+                            </pre>
+                        </code>
+                        <p> Before moving on to the React section, let’s use the API we created with JavaScript. We don’t always have to use react after all. </p>
+                        <p>
+                            Our process is to write a very simple JavaScript code. We will send an Http request and print the returned data on the screen. 
+                            We use the code below to print all the books we have on the homepage as a list.
+                        </p>
+                        <code class="code">
+                            <pre>
+                                
+{% extends 'base.html' %}
+{% block content %}
+  < h1>DjangoReact< /h1>
+  < div id="books">< /div>
+  <  scrip t>
+    const booksElement = document.getElementById('books')
+    booksElement.innerHTML = 'Just a moment'
+    const xhr = new XMLHttpRequest()
+    const method = 'GET' // or POST
+    const url = '/books/'
+    const responseType = 'json'
+    xhr.responseType = responseType
+    xhr.open(method, url)
+    xhr.onload = function(){
+      const urlResponse = xhr.response
+      const Items = urlResponse.response
+      let finalExecution = "" 
+      let i;
+      for(i = 0; i < Items.length; i++){
+        let currentItem = "< h3>" + Items[i].name + "< /h3>"
+        currentItem += "< h4>" + Items[i].author + "< h4>"
+        currentItem += "< p>" + Items[i].description + "< /p>"
+        finalExecution += currentItem 
+      }
+    booksElement.innerHTML = finalExecution
+    }
+xhr.send()
+< /scrip  t>
+{% endblock content %}
+
+                            </pre>
+                        </code>
+                        <p>
+                            I didn’t do anything about styling because our aim is to understand the main idea. 
+                            We did book creation page with book_create_view function and it creates a form according to model rules. 
+                            Let’s create our own form and send it to API.
+                        </p>
+                        <code class="code">
+                            <pre>
+< form method="POST" action="/create-book">
+    < input type="hidden" value="/" name="next"/>
+    < input type="text" name="name" />
+    < input type="text" name="author" />
+    < textarea type="text" name="description">< /textarea>
+    < button type="submit">Save< /button>
+< /form>
+                            </pre>
+                        </code>
+                        <p>
+                            After adding the form into home page, fill the form and click the save button. 
+                            Yes, you see an error message as CSRF verification failed. Request aborted.
+
+                        </p>
+                        <p>
+                            When we created our first form we sent a csrf_token.
+                            We should apply the same thing here also. 
+                            We add our {% csrf_token %} code inside the form. After adding it, we made our form working.
+
+                        </p>
+                        <p>
+                            Now it stays in the same page after saved our form but it’s better to redirect to the previous page. 
+                            We already prepared our plan in the above code by adding an input named next.
+                             We’ll use that as a redirection page if creation is done. 
+                             Let’s call the redirect argument from the django.shortcuts library to our view page ( from django.shortcuts import render, redirect). 
+                             We will use our incoming ‘next ’ value as the page to be redirected and, if the recording has occurred, we will redirect it.
+
+                        </p>
+                        <code class="code">
+                            <pre>
+def book_create_view(request, *args, **kwargs):
+    form = BooksForm(request.POST or None)
+    next_url = request.POST.geT('next') or None
+    if form.is_valid()
+        obj = form.save(commit=False)
+        obj.save()
+    if next_url != None:
+        return redirect(next_url)
+    form = BooksForm()
+    return render(request, 'components/form.html', context={'form': form}
+                            </pre>
+                        </code>
+                        <p>
+                            In order to take a little precaution, let’s make sure that the address to be routed is secure. 
+                            If somehow a different address is sent inside as the next value, the user will not be directed to an unwanted address. 
+                            To do it, let’s add our secure addresses to the settings.py file with the ALLOWED_HOSTS array.
+                        </p>
+                        <code class="code">ALLOWED_HOSTS = ['127.0.0.1', 'yourdomainname.com', 'localhost']</code>
+                        <p>
+                            To be able to check these addresses, we’ll use Django’s features. 
+                            Import the is_safe_url from django.utils.http import is_safe_url code to the page. 
+                            This code will check the page which wanted to redirect is safe or not by comparing the URLs in ALLOWED_HOSTS and the redirection page.
+                        </p>
+                        <p>
+                            We add another check to the line where we control if next_url != None and save it as if next_url != None and is_safe_url(next_url) . 
+                            When we run this form and submit form, we will see an error, because we did not call our settings to the page and show our accepted addresses. 
+                            We import our settings to our page with from django.conf import settings. 
+                            Within the page, we define ALLOWED_HOSTS = settings.ALLOWED_HOSTS variable and send it as the second parameter into is_safe_url() (next_url, 
+                            ALLOWED_HOSTS). The final version of our view code is as follows:
+
+                        </p>
+                        <code class="code">
+                            <pre>
+def book_create_view(request, *args, **kwargs):
+  form = BooksForm(request.POST or None)
+  next_url = request.POST.get('next') or None
+  if form.is_valid()
+    obj = form.save(commit=False)
+    obj.save()
+    if next_url != None and is_safe_url(next_url):
+      return redirect(next_url)
+    form = BooksForm()
+  return render(request, 'components/form.html', context={'form': form}
+                            </pre>
+                        </code>
+                        <p>
+                            To test our is_safe_url code, you may change any other address as next value via form.
+                        </p>
+                    </body>
+                </section>
+                <hr>
+                <section class="main-section">
+                    <header id="Serializer">
+                        <h1>Serializer</h1>
+                    </header>
+                    <body>
+                        <p>
+                            The serialization process is the process of converting the class or objects that we have into the format to be stored or sent. 
+                            In cases where we do not know the types of objects or classes we have registered, we can increase the usability for later use by serializing. 
+                            This process will bring increased performance and our data to shrink.
+                        </p>
+                        <p>
+                            Let’s install djangorestframework, the django library which will enable us to play on the REST API and help us with serialization, 
+                            by writing pipenv install djangorestframework code on the console and install it in our project. 
+                            Add rest_framework to our INSTALLED_APPS array in settings.py file. We can now use this library by calling our page.
+                        </p>
+                        <p>
+                            Actually, we did the serialization process since we definebooks = 
+                            [{'id':x.id, 'name':x.name, 'author':x.author, 'description': x.description} for x in blist] 
+                            and now separating this process let’s add some little changes.
+                        </p>
+                        <code class="code">
+                            <pre>
+from django.db import models
+
+# Create your models here.
+class Books(models.Model):
+    # id = models.AutoField(primary_key=True)
+    name = models.TextField(blank=False, null=False)
+    author = models.TextField(blank=False, null=False)
+    description = models.TextField()
+    image = models.FileField(upload_to='images/', blank=True, null=True)
+    
+    def serialize(self):
+        return {
+            "id" : self.id,
+            "name": self.name,
+            "author": self.author,
+            "description" : self.description,
+            "image" : self.image
+        }   
+                            </pre>
+                        </code>
+                        <p>After defining serialize function inside of Model, we can clarify books_list view.</p>
+                        <code class="code">
+                            <pre>
+def books_list(request, *args, **kwargs):
+  blist = Books.objects.all()
+  books = [x.serialize() for x in blist]
+  data = {
+    'response' : books
+  }
+  return JsonResponse(data)
+                            </pre>
+                        </code>
+                        <p>Now we have got rid of the code clutter we had while defining our variable.</p>
+                        <p>We did book creation process by using Form before. 
+                            Now let’s rewrite it with the serialization process in djangorestframework. 
+                            Create a file named serializer.py and adapt the code we wrote in form.py here.
+                        </p>
+                        <code class="code">
+                            <pre>
+from django.conf import settings 
+from rest_framework import serializers
+from .models import Books
+
+
+class BooksSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Books
+        fields = ['name','author','description']
+
+    def validate_description(self, value):
+        if len(value) > 300:
+            raise serializers.ValidationError("This is too long")
+        return value
+                            </pre>
+                        </code>
+
+                        <code class="code">
+                            <pre>
+from django import forms 
+
+from .models import Books
+
+class BooksForm(forms.ModelForm):
+class Meta:
+    model = Books
+    fields = ['name','author','description']
+def clean_description(self):
+    description = self.cleaned_data.get('description')
+    if len(description) > 300:
+        raise forms.ValidationError("This is too long")
+    return description
+                            </pre>
+                        </code>
+                        <p>Serializer file ready-to-use so we’ll use it in view side.</p>
+                        <code class="code">
+                            <pre>
+from .serializer import BooksSerializer
+
+def book_crete_view(request, *args, **kwargs):
+    serializer = BooksSerializer(data=request.POST or None)
+    if serializer.is_valid():
+        serializer.save()
+        return JsonResponse(serializer.data, status=200)
+    return JsonResponse({}, status=400)
+
+def book_create_view_pure(request, *args, **kwargs):
+    form = BooksForm(request.POST or None)
+    next_url = request.POST.get('next') or None
+    if form.is_valid():
+        obj = form.save(commit=False)	   
+        obj.save()
+        if next_url != None and is_safe_url(next_url,ALLOWED_HOSTS):
+            return redirect(next_url)
+        form = BooksForm()	        
+    return render(request, 'components/form.html', context={'form': form}) 
+                            </pre>
+                        </code>
+                        <p>I changed book_create_view function we created earlier by adding _pure. 
+                            I rewrote this function with the serializer I created. 
+                            Previously we had rendered an html file. 
+                            Now, we have printed our return result as json to be able to use the results on the front-end side.
+                        </p>
+                        <p>
+                            Let’s roll out from Django Views to Django Rest Framework Views starting from changing book_create_view function.
+                        </p>
+                        <code class="code">
+                            <pre>
+@api_view(['POST'])
+def book_create_view(request, *args, **kwargs):
+   serializer = BooksSerializer(data=request.POST or None)
+   if serializer.is_valid(raise_exception = True):
+      serializer.save()
+      return Response(serializer.data)
+   return Response({}, status=400)
+                            </pre>
+                        </code>
+                        <p>
+                            Adding the@api_view() code above our function, we provide the function view as an API. We can determine the accessibility of this function by giving parameters such as POST-GET. Our return method is Response instead of JsonResponse now.
+                        </p>
+                        <p>
+                            That’s all! — not, of course. Well, we’ve learned what we need to keep practicing so far. To learn more about Djangorestframework you may visit its documentation page, you can learn which parameters you can use.
+
+                        </p>
+                    </body>
+                </section>
+                <hr>
+                <section class="main-section">
+                    <header id="Testing">
+                        <h1>Testing</h1>
+                    </header>
+                    <body>
+                        <p>
+                            The last operation will be done on django side is testing. Even you have never done testing before, it’s time to take a step to TDD(Test Driven Development). If we get used to doing this — even if it’s in another language — it will save us time.
+                        </p>
+                        <p>
+                            When we install our application, it brings our test file with it. When we write ./manage.py tests books on the command line, it will run our test and our first output will be as follows:
+                        </p>
+                        <div class="img-div"> 
+                            <img
+                                alt="tests books img"
+                                scr=""
+                            >
+                        </div>
+                        <p>
+                            The results are incredible, because there is no test code in our file. Hoping to keep this incredibly we keep moving. Let’s write a test code for Books model into tests.py file.
+                        </p>
+                        <code class="code">
+                            <pre>
+from django.test import TestCase
+from .models import Books
+
+
+class BookTestCase(TestCase):
+   def test_book_created(self):
+       book_obj = Books.objects.create(name='Anonymous', author='John Doe', description='lorem ipsum sit door amet.')
+       self.assertEqual(book_obj.id, 1)
+                            </pre>
+                        </code>
+                        <p>
+                            In this case, we created a book and when we run the test it will create a new book and will be tested its id. If it did not save it or the data its saved is different than it should be, it will show up an error message.
+                        </p>
+                        <div class="img-div"> 
+                            <img
+                                alt="tests books img #2"
+                                scr=""
+                            >
+                        </div>
+                        <p>
+                            It ran successfully. If we have done self.assertEqual(book_obj.id, 5) it would show up an error as AssertionError: 1 != 5 when we run our test. While doing this for the first time, the first data given to database should have id 1, we say check it for 5. The same error would come even if the id of the created object is not 1. You can see more usages of Django’s documentation on testing.
+                        </p>
+                        
+
+                    </body>
+                </section>
+                <hr>
+                
+            </main>
+            
+        </body>
+
+        <footer>
+            <header>
+                <!-- Large centered div with sub header-->
+                <div id="title">
+                    <h1>Technical Documentation Footer</h1>
+                </div>
+            </header>
+        </footer>
+
+    </main>
+    <script src="./documentation.js"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</html>
